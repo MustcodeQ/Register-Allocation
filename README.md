@@ -5,7 +5,7 @@ Table of Contents
 Overview
 Requirements
 Usage
-Example Output
+Example Output    
 Code Structure
 Detailed Explanation
 Contributing
