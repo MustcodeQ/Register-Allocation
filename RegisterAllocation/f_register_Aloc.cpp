@@ -4,6 +4,7 @@
 #include <map>
 #include <stack>
 #include <string>
+#include <algorithm> // Include this header for find_if
 
 using namespace std;
 
