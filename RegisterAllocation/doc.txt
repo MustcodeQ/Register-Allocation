@@ -1,0 +1,42 @@
+Key Components
+Constants and Data Structures:
+
+NUM_REGISTERS and REGISTERS: Define the number of available registers and their names.
+BasicBlock: Represents a basic block in the control flow graph (CFG) with an ID, a list of instructions, and sets for live-in and live-out variables.
+InterferenceGraph: Represents the interference graph, where variables that cannot share the same register are connected by edges.
+Interference Graph Construction:
+
+createInterferenceGraph(const vector<BasicBlock>& blocks): This function constructs the interference graph. It iterates over the instructions in each basic block in reverse order and updates the live variable sets to establish interference edges between variables.
+Register Allocation:
+
+allocateRegisters(const InterferenceGraph& graph): This function allocates registers using a graph coloring algorithm:
+Degree Calculation: Calculate the degree (number of neighbors) for each node (variable).
+Simplification Phase: Remove nodes with a degree less than the number of available registers and push them onto a stack, decrementing the degree of their neighbors.
+Select Phase: Pop nodes off the stack and assign them a register that is not used by their neighbors, ensuring no two adjacent nodes share the same register.
+Main Function:
+
+Example Basic Blocks: Defines a couple of basic blocks with instructions and live variable sets.
+Graph Construction: Calls createInterferenceGraph to build the interference graph from the basic blocks.
+Register Allocation: Calls allocateRegisters to perform register allocation based on the interference graph.
+Output: Prints the register allocation results, showing which variable is assigned to which register.
+Explanation of Each Part
+Data Structures:
+
+BasicBlock struct contains:
+id: Identifier for the basic block.
+instructions: List of variables involved in instructions.
+liveIn and liveOut: Sets of variables that are live at the entry and exit of the block.
+InterferenceGraph class contains methods to add edges and retrieve neighbors in the interference graph.
+createInterferenceGraph:
+
+Iterates through each basic block's instructions in reverse.
+For each instruction (variable), updates the live variable set and adds edges between the variable and all variables in the live set (representing interference).
+allocateRegisters:
+
+Simplification Phase: Identifies nodes (variables) with fewer neighbors than available registers, removes them, and pushes them onto a stack.
+Select Phase: Assigns registers to nodes popped from the stack, ensuring no adjacent nodes share the same register by checking the registers assigned to their neighbors.
+Main Function:
+
+Creates a few basic blocks with sample instructions and live variable sets.
+Constructs the interference graph and allocates registers.
+Prints the resulting register allocation.
